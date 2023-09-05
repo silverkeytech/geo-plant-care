@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GeoPlantCare.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
@@ -18,17 +19,26 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                                <!-- User and Home items -->
+                <li class="nav-item">
+                    <a class="nav-link text-light fa fa-fw fa-user">Username</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/">Home</a>
+                </li>
+
+                @* <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light">Username</a>
+                        <li class="nav-user">
+                            <a class="nav-link text-light fa fa-fw fa-user">Username</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-home">
                             <a class="nav-link text-light" href="/">Home</a>
                         </li>
                     </ul>
-                </div>
+                </div> *@
             </div>
+            <input type="text"placeholder="Search..">
         </nav>
     </header>
     <div class="container">
