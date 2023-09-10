@@ -7,18 +7,18 @@ module default {
         required property username -> str;
         property password -> str; 
         property user_type -> UserType;
-        link location -> Location;
+        property email -> str {constraint exclusive};
         multi link plants -> Plant;
     };
 
-    # Location Entity
-    type Location {
-        required property name -> str;
-        property latitude -> float64;
-        property longitude -> float64;
-        property climate_temp_celsius -> float64; 
-        multi link plants -> Plant;
-    };
+    # # Location Entity
+    # type Location {
+    #     required property name -> str;
+    #     property latitude -> float64;
+    #     property longitude -> float64;
+    #     property climate_temp_celsius -> int16; 
+    #     multi link plants -> Plant;
+    # };
 
     # Enumerated types for bloom time, soil type, and native area
     scalar type BloomTime extending enum<Summer, Spring, Winter, Autumn>;
@@ -37,8 +37,11 @@ module default {
         property botanical_name -> str;
         property description -> str;
         property bloom_time -> BloomTime;
-        property native_area -> NativeArea;
+        property native_area -> array<NativeArea>;
         multi link care_guides -> PlantCareGuide;
+        property min_temperature -> int16;
+        property max_temperature -> int16;
+        property toxicity -> array<Toxicity>;
         multi link photos -> PlantPhotoGallery;
         link labels -> PlantLabel;
     };
@@ -46,12 +49,13 @@ module default {
     # Plant Care Entity
     type PlantCareGuide {
         required property temperature_category -> TemperatureCategory;
-        property sun_exposure -> SunExposure;
+        property sun_exposure_ideal -> SunExposure;
+        property sun_exposure_tolerance -> SunExposure;
         property water_frequnecy -> WaterFrequency;
         property water_approach -> str;
-        property soil_type -> SoilType;
+        property soil_type -> array<SoilType>;
         property fertilizers -> str;
-        property toxicity -> str;
+        
     };
 
     # Plant Photo Gallery Entity
@@ -83,6 +87,6 @@ module default {
         
         property sun_exposure -> SunExposure;
         property recommendation -> Recommendation;
-        property toxicity -> Toxicity;
+        property toxicity -> array<Toxicity>;
     };
 };

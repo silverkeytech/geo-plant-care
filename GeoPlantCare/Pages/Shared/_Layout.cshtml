@@ -12,33 +12,42 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
-            <div class="container">
-                <div class="navbar-brand" asp-area="" asp-page="/Index">GeoPlantCare</div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3 "data-bs-theme="dark"style="background-color: #b7decd;">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1 fs-1"style="color: white; font-family: 'Spicy Rice', cursive;">GeoPlantCare</span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
                 </button>
-                                <!-- User and Home items -->
-                <li class="nav-item">
-                    <a class="nav-link text-light fa fa-fw fa-user">Username</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="/">Home</a>
-                </li>
-
-                @* <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-user">
-                            <a class="nav-link text-light fa fa-fw fa-user">Username</a>
-                        </li>
-                        <li class="nav-home">
-                            <a class="nav-link text-light" href="/">Home</a>
-                        </li>
-                    </ul>
-                </div> *@
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    @* <li class="nav-item">
+                        <img src="~/icons/User.png" alt="username"/>
+                    </li> *@
+                    <li class="nav-item d-flex align-items-center">
+                        <img src="~/icons/User.png" alt="username" style="height: 35px; width: 35px; margin-right: 10px;"/>
+                        <a class="nav-link active fs-4" style="color: white;" aria-current="page" href="#">Username</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" style="color: white;" href="#">Home</a>
+                    </li>
+                </ul>
+                <form class="d-flex align-items-center" role="search">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="height: 40px;">
+                    <button type="button" class="btn " speechify-initial-font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, &quot;Noto Sans&quot;, &quot;Liberation Sans&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" speechify-initial-font-size="16px" style="font-family: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, &quot;Noto Sans&quot;, &quot;Liberation Sans&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-search" viewBox="0 0 16 16" speechify-initial-font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, &quot;Noto Sans&quot;, &quot;Liberation Sans&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" speechify-initial-font-size="16px" style="font-family: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, &quot;Noto Sans&quot;, &quot;Liberation Sans&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px;">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" speechify-initial-font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, &quot;Noto Sans&quot;, &quot;Liberation Sans&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" speechify-initial-font-size="16px" style="font-family: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, &quot;Noto Sans&quot;, &quot;Liberation Sans&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px;"></path>
+                        </svg>
+                    </button>
+                    <span id="locationText"></span>                 
+                     <button class="btn ">
+                        <img src="~/icons/Location.png" alt="location" style="width: 35px; height: 35px;" />
+                    </button>  
+                    <button class="btn">
+                        <img src="~/icons/SunBehindCloud.png" alt="sunbehindcloud" />
+                    </button>
+                </form>
+                </div>
             </div>
-            <input type="text"placeholder="Search..">
         </nav>
     </header>
     <div class="container">
@@ -60,3 +69,7 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+
+
+        
