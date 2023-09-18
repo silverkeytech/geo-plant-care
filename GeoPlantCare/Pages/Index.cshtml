@@ -5,7 +5,8 @@
 }
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Solway:wght@400;700&display=swap" />
 
-<div style="height: 80vh; display: flex; align-items: center; justify-content: center;">
+
+<div id="welcomeMessage" style="height: 80vh; display: flex; align-items: center; justify-content: center;">
     <div style="font-family: 'Solway', serif; font-size: 36px; text-align: center;">
         <h1>Welcome to Geo Plant Care!</h1>
         <p>"Wherever you are, we've got your plants covered! 🌱🌍"</p>
@@ -13,3 +14,63 @@
         <p style="color: #2FBA89;">Please select your location</p>
     </div>
 </div>
+<div id="plantContainer" class="container-md" style="display: none;">
+    <div id="plantTemplate" class="plant-item d-flex align-items-center mb-3 bg-light p-3" style="display: none;">
+        <img src="#" alt="plant image" style="width: 183px; height: 183px; border-radius: 10px; margin-right: 31px;" id="plantImage"/>
+        <div class="flex-grow-1 mb-0">
+            <h2 id="commonName" style="font-family: 'Sofia Sans Extra Condensed', sans-serif;">Common Name</h2>
+            <p id="botanicalName">Botanical Name</p>
+        </div>
+        <button class="btn" style="height: 60; width:60;">➔</button>
+    </div>
+</div>
+
+
+<script>
+    async function fetchPlantsBasedOnTemperature() {
+        try {
+            const tempSpan = document.getElementById('temperature');
+            if(tempSpan) {
+                const temperatureText = tempSpan.textContent || '';
+                const userTemperature = parseInt(temperatureText.replace('°C', ''), 10);
+
+                if(!isNaN(userTemperature)) {
+                    const response = await fetch(`/Index?handler=UserRecommendedPlants&userTemperature=${userTemperature}`);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    const plants = await response.json();
+
+                    const plantContainer = document.getElementById('plantContainer');
+                    const plantTemplate = document.getElementById('plantTemplate');
+                    plantContainer.innerHTML = '';
+
+                    if(plants && plants.length > 0) {
+                        plants.forEach(plant => {
+                            const plantClone = plantTemplate.cloneNode(true);
+                            plantClone.style.display = 'flex'; // Make the clone visible
+
+                            const plantImageUrl = plant.photos && plant.photos.length > 0 ? plant.photos[0].url : '#';
+                            plantClone.querySelector('#plantImage').src = plantImageUrl;
+                            plantClone.querySelector('#commonName').textContent = plant.common_name;
+                            plantClone.querySelector('#botanicalName').textContent = plant.botanical_name;
+
+                            plantContainer.appendChild(plantClone);
+                        });
+                    } else {
+                        plantContainer.innerHTML = '<p>No plants found</p>';
+                    }
+
+                    plantContainer.style.display = 'block';
+                    document.getElementById('welcomeMessage').style.display = 'none';
+                }
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchPlantsBasedOnTemperature();
+    });
+</script>
