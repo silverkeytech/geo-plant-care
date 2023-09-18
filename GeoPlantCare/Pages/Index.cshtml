@@ -52,8 +52,8 @@
 
                             const plantImageUrl = plant.photos && plant.photos.length > 0 ? plant.photos[0].url : '#';
                             plantClone.querySelector('#plantImage').src = plantImageUrl;
-                            plantClone.querySelector('#commonName').textContent = plant.common_name;
-                            plantClone.querySelector('#botanicalName').textContent = plant.botanical_name;
+                            plantClone.querySelector('#commonName').textContent = plant.commonName;
+                            plantClone.querySelector('#botanicalName').textContent = plant.botanicalName;
 
                             plantContainer.appendChild(plantClone);
                         });

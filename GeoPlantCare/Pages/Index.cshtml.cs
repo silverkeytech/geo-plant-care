@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -25,6 +28,7 @@ namespace GeoPlantCare.Pages
             };
             var plants = await _client.QueryAsync<Plant>(@"
                 SELECT Plant {
+                    id,
                     common_name,
                     botanical_name,
                     photos: {
@@ -41,19 +45,22 @@ namespace GeoPlantCare.Pages
 
     public class Plant
     {
-        public string common_name { get; set; }
-        public string botanical_name { get; set; }
-        public List<PlantPhotoGallery> photos { get; set; }
+        public Guid Id { get; set; }
+
+        public string CommonName { get; set; }
+
+        public string BotanicalName { get; set; }
+
+        public List<PlantPhotoGallery> Photos { get; set; }
     }
 
     public class PlantPhotoGallery
     {
-        public string url { get; set; }
+        public string Url { get; set; }
     }
 
     public class QueryParameters
     {
-        public short userTemperature { get; set; }
+        public short UserTemperature { get; set; }
     }
-
 }
