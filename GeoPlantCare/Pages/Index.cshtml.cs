@@ -43,24 +43,6 @@ namespace GeoPlantCare.Pages
 
     }
 
-    public class Plant
-    {
-        public Guid Id { get; set; }
 
-        public string CommonName { get; set; }
 
-        public string BotanicalName { get; set; }
-
-        public List<PlantPhotoGallery> Photos { get; set; }
-    }
-
-    public class PlantPhotoGallery
-    {
-        public string Url { get; set; }
-    }
-
-    public class QueryParameters
-    {
-        public short UserTemperature { get; set; }
-    }
 }

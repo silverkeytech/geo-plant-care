@@ -11,15 +11,6 @@ module default {
         multi link plants -> Plant;
     };
 
-    # # Location Entity
-    # type Location {
-    #     required property name -> str;
-    #     property latitude -> float64;
-    #     property longitude -> float64;
-    #     property climate_temp_celsius -> int16; 
-    #     multi link plants -> Plant;
-    # };
-
     # Enumerated types for bloom time, soil type, and native area
     scalar type BloomTime extending enum<Summer, Spring, Winter, Autumn>;
     scalar type SoilType extending enum<WellDrained, Moist, Rich, Sand, Clay, Loam, Chalky, Silt, Peat>;
@@ -60,7 +51,7 @@ module default {
 
     # Plant Photo Gallery Entity
     type PlantPhotoGallery {
-        required property url -> str;
+        required property url -> array<str>;
         property description -> str;
     };
 

@@ -19,14 +19,18 @@
         <img src="#" alt="plant image" style="width: 183px; height: 183px; border-radius: 10px; margin-right: 31px;" id="plantImage"/>
         <div class="flex-grow-1 mb-0">
             <h2 id="commonName" style="font-family: 'Sofia Sans Extra Condensed', sans-serif;">Common Name</h2>
-            <p id="botanicalName">Botanical Name</p>
+            <p id="botanicalName" style="font-size: 20px;">Botanical Name</p>
         </div>
-        <button class="btn" style="height: 60; width:60;">➔</button>
+            <button class="btn" style="height: 60; width:60;" onclick="navigateToPlantPage(event, '')" id="navigateButton">➔</button>
     </div>
 </div>
 
 
 <script>
+    function navigateToPlantPage(event, plantId) {
+        event.preventDefault();
+        window.location.href = `/Plant?handler=PlantById&id=${plantId}`;
+    }
     async function fetchPlantsBasedOnTemperature() {
         try {
             const tempSpan = document.getElementById('temperature');
@@ -40,6 +44,7 @@
                         throw new Error('Network response was not ok ' + response.statusText);
                     }
                     const plants = await response.json();
+                    sessionStorage.setItem('temperature', userTemperature + '°C');
 
                     const plantContainer = document.getElementById('plantContainer');
                     const plantTemplate = document.getElementById('plantTemplate');
@@ -50,11 +55,13 @@
                             const plantClone = plantTemplate.cloneNode(true);
                             plantClone.style.display = 'flex'; // Make the clone visible
 
-                            const plantImageUrl = plant.photos && plant.photos.length > 0 ? plant.photos[0].url : '#';
+                            const plantImageUrl = plant.photos && plant.photos.length > 0 && plant.photos[0].url.length > 0 ? plant.photos[0].url[0] : '#';
                             plantClone.querySelector('#plantImage').src = plantImageUrl;
                             plantClone.querySelector('#commonName').textContent = plant.commonName;
                             plantClone.querySelector('#botanicalName').textContent = plant.botanicalName;
-
+                            // Set the plant ID on the navigate button
+                            const navigateButton = plantClone.querySelector('#navigateButton');
+                            navigateButton.setAttribute('onclick', `navigateToPlantPage(event, '${plant.id}')`);
                             plantContainer.appendChild(plantClone);
                         });
                     } else {

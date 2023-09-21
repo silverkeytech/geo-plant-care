@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+<!DOCTYPE html>
 <html lang="en">
 <style>
     .popover {
@@ -32,10 +34,10 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item d-flex align-items-center">
                             <img src="~/icons/User.png" alt="username" style="height: 35px; width: 35px; margin-right: 10px;"/>
-                            <a class="nav-link active fs-4" style="color: white;" aria-current="page" href="#">Username</a>
+                            <a class="nav-link active fs-4" style="color: white;" aria-current="page">Username</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-4" style="color: white;" href="#">Home</a>
+                            <a class="nav-link fs-4" style="color: white;" href="/">Home</a>
                         </li>
                     </ul>
                     <form class="d-flex align-items-center" role="search">
@@ -74,7 +76,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9yimYIVOMESssxOi2oLKIx3ibmIV1bhE&callback=initMap"> </script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=@Configuration["APIKeys:GoogleMaps"]&callback=initMap"> </script>
     <script>
         let map;
         let marker;
@@ -148,10 +150,11 @@
                 }
             });
         }
-
+        
         async function fetchTemperature(lat, lng) {
             try {
-                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=aa00cd7a95e2f5661fd0779903618790&units=metric`);
+                const openWeatherApiKey = '@Configuration["APIKeys:OpenWeather"]';
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${openWeatherApiKey}&units=metric`);
                 const data = await response.json();
                 return Math.round(data.main.temp); // Round the temperature value here
             } catch (error) {
@@ -204,10 +207,28 @@
                     if (temp !== undefined) {
                         document.getElementById('temperature').textContent = Math.round(temp) + '°C';
                     }
-                    fetchPlantsBasedOnTemperature();
+                    // Set the data in sessionStorage
+                    sessionStorage.setItem('locationName', selectedLocationName);
+                    sessionStorage.setItem('temperature', Math.round(temp) + '°C');
+                    
                 }
             });
 
+                // Read the data from sessionStorage
+            const storedLocationName = sessionStorage.getItem('locationName');
+            const storedTemperature = sessionStorage.getItem('temperature');
+
+            // Check if data exists and set the text content accordingly
+            if (storedLocationName) {
+                document.getElementById('locationName').textContent = storedLocationName;
+            }
+            if (storedTemperature) {
+                document.getElementById('temperature').textContent = storedTemperature;
+            }
+                // Call fetchPlantsBasedOnTemperature if there's stored temperature and location
+            if (sessionStorage.getItem('temperature') && sessionStorage.getItem('locationName')) {
+                fetchPlantsBasedOnTemperature();
+            }
             // Prevent closing the popover when clicking inside it
             document.addEventListener('click', function (e) {
                 if (popover._popper && popover._popper.contains(e.target)) {

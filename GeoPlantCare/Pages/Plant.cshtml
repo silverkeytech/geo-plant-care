@@ -1,0 +1,200 @@
+@page 
+@model PlantModel
+@{
+    
+}
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@700&display=swap" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .plantnav-tabs {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            background-color: white;
+            justify-content: center;
+            width: 400px;
+            margin: 0 auto;
+        }
+        .plantnav-item {
+            flex: 1;
+            text-align: center;
+        }
+        .plantnav-link {
+            border-radius: 10px;
+            color: black;
+        }
+        .plantnav-link.active {
+            background-color: #dee2e6;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel" style="margin-left: 150px; margin-bottom:50px;">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+            <img src="@Model.Plantdetails.Photos[0].Url[0]" class="d-block mx-auto" alt="Plant image" style="width: 300px; height: 300px; border-radius: 10px; justify-content: center; margin-bottom:60px; ">
+
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+            <img src="@Model.Plantdetails.Photos[0].Url[1]" class="d-block mx-auto" alt="Plant image" style="width: 300px; height: 300px; border-radius: 10px; justify-content: center; margin-bottom:60px; ">
+
+            </div>
+            <div class="carousel-item">
+            <img src="@Model.Plantdetails.Photos[0].Url[2]" class="d-block mx-auto" alt="Plant image" style="width: 300px; height: 300px; border-radius: 10px; justify-content: center; margin-bottom:60px; ">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+        <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 200; font-size: 36px; margin-left: 620px; margin-bottom:50px;">@Model.Plantdetails.CommonName</h2>
+
+    @* <div id="navRail" style="position: fixed; top: 50%; left: 0; width: 100px; height:50%; background-color: #f8f9fa; padding: 10px; transform: translateY(-50%);">
+        <!-- Add your navigation items here -->
+    </div> *@
+
+    <div id="mainContent" style="margin-left: 210px;">
+        <ul class="nav nav-tabs plantnav-tabs " id="myTab" role="tablist">
+          <li class="nav-item plantnav-item">
+            <a class="nav-link  plantnav-link active" id="care-tab" data-toggle="tab" href="#care" role="tab" aria-controls="care" aria-selected="true">How To Care</a>
+          </li>
+          <li class="nav-item plantnav-item">
+            <a class="nav-link plantnav-link" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Info</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane show active" id="care" role="tabpanel" aria-labelledby="care-tab">
+            <!-- Your Care Guide Content Goes Here -->
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center bg-light mb-3 p-3" style="color: #b1b2b5;">
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="~/icons/icons8-plant-80.png" alt="Icon" id="Icon" style="margin-left: -55px;"/>
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left:10px;">Sun Exposure</h2>
+                        </div>
+                        <p id="sunGuide" style="color:Black; font-size:20px">@Model.FormatEnum(Model.Plantdetails.CareGuides[0].SunExposureIdeal.ToString())
+                        </p>
+                        <p id="sunGuide" style="color:Black; font-size:20px"> @Model.FormatEnum(Model.Plantdetails.CareGuides[0].SunExposureTolerance.ToString())
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center bg-light mb-3 p-3" style="color: #b1b2b5;">
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="~/icons/icons8-garden-80.png" alt="Icon" id="Icon" style="margin-left: -55px;"/>
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left:10px;">Water</h2>
+                        </div>
+                        <p id="waterGuide" style="color:Black; font-size:20px;"> @Model.Plantdetails.CareGuides[0].WaterFrequency.ToString()</p>
+                            <p style="font-weight: 600; color:Black; font-size:20px">Approach</p>
+                        <p id="waterGuide" style="color:Black; font-size:20px"> @Model.Plantdetails.CareGuides[0].WaterApproach.ToString()</p>
+
+
+                    </div>
+                </div>
+            </div>
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center bg-light mb-3 p-3" style="color: #b1b2b5;">
+                    
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="~/icons/icons8-sprout-80.png" alt="Icon" id="Icon" style="margin-left: -55px;"/>
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left:10px;">Soil</h2>
+                        </div>
+                        <p id="waterGuide" style="color:Black; font-size:20px">@string.Join(", ", Model.Plantdetails.CareGuides[0].SoilType.Select(st => st.ToString()))</p>
+                    </div>
+                </div>
+            </div>
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center bg-light mb-3 p-3" style="color: #b1b2b5;">
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="~/icons/icons8-fertilizer-80.png" alt="Icon" id="Icon" style="margin-left: -55px;"/>
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left:10px;">Fertilizers</h2>
+                        </div>
+                        <p id="waterGuide" style="color:Black; font-size:20px">@Model.Plantdetails.CareGuides[0].Fertilizers.ToString()</p>
+                    </div>
+                </div>
+            </div>
+                        <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center bg-light mb-3 p-3" style="color: #b1b2b5;">
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="~/icons/icons8-biohazard-80.png" alt="Icon" id="Icon" style="margin-left: -55px;"/>
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left:10px;">Toxicity</h2>
+                        </div>
+                        <p id="waterGuide" style="color:Black; font-size:20px">@Model.FormatEnum(string.Join(", ", Model.Plantdetails.Toxicity))</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="info" role="tabpanel" aria-labelledby="info-tab">
+            <!-- Your Info content goes here -->
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center bg-light mb-3 p-3" style="color: #b1b2b5;">
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3"> 
+                            <img src="~/icons/icons8-info-75.png" alt="Icon" id="Icon" style="width:60px; height:60px; margin-left:-55px;"/>
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left: 10px;">Description</h2>
+                        </div>
+                        <p id="commonName" style="color:Black; font-size:20px">
+                            <span style="font-weight: 500;">Common Name: </span>@Model.Plantdetails.CommonName</p>
+                        <p id="botnName" style="color:Black; font-size:20px">
+                            <span style="font-weight: 500;">Botanical Name: </span>@Model.Plantdetails.BotanicalName</p>
+                        <p id="description" style="color:Black; font-size:20px">@Model.Plantdetails.Description</p>
+                    </div>
+                </div>
+            </div>
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center bg-light mb-3 p-3" style="color: #b1b2b5;">
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3"> 
+                            <img src="~/icons/season.png" alt="Icon" id="Icon" style="margin-left: -55px;"/>
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left: 10px;">Bloom Time</h2>
+                        </div>
+                        <p id="sunGuide" style="color:Black; font-size:20px">@Model.Plantdetails.BloomTime.ToString()</p>
+                    </div>
+                </div>
+            </div>
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center bg-light mb-3 p-3" style="color: #b1b2b5;">
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="~/icons/planet-earth .png" alt="Icon" id="Icon" style="margin-left: -55px;"/>
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left: 10px;">Native Area</h2>
+                        </div> 
+                        <p id="sunGuide" style="color:Black; font-size:20px">@string.Join(", ", Model.Plantdetails.NativeArea)</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('#myTab a').forEach(function(tabLink) {
+                tabLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    $(this).tab('show');
+                });
+            });
+        });
+    </script>
+</body>

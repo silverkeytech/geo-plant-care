@@ -7,15 +7,19 @@ using System.Security.Cryptography;
 using Microsoft.AspNetCore.Antiforgery;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<IConfiguration>(configuration); 
 
 // Adding EdgeDB service before building the app
 builder.Services.AddEdgeDB(EdgeDBConnection.FromInstanceName("GeoPlantCare"), config =>
 {
     config.SchemaNamingStrategy = INamingStrategy.SnakeCaseNamingStrategy;
 });
+
+
 
 var app = builder.Build();
 
