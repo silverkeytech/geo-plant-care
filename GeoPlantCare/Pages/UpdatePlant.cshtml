@@ -1,0 +1,293 @@
+@page
+@model UpdatePlantModel
+@{
+
+}
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@700&display=swap" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .plantnav-tabs {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            background-color: white;
+            justify-content: center;
+            width: 400px;
+            margin: 0 auto;
+        }
+        .plantnav-item {
+            flex: 1;
+            text-align: center;
+        }
+        .plantnav-link {
+            border-radius: 10px;
+            color: black;
+        }
+        .plantnav-link.active {
+            background-color: #dee2e6;
+            font-weight: 700;
+        }
+        .form-check{
+            color: black;
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <img src="" class="d-block " style="height: 300px; width:300px; border-radius: 10px; left:0; margin-bottom:60px;">
+
+        <div id="mainContent" style="margin-left: 210px;">
+        <ul class="nav nav-tabs plantnav-tabs " id="myTab" role="tablist">
+          <li class="nav-item plantnav-item">
+            <a class="nav-link  plantnav-link active" id="below-tab" data-toggle="tab" href="#below" role="tab" aria-controls="below" aria-selected="true">Below range</a>
+          </li>
+          <li class="nav-item plantnav-item">
+            <a class="nav-link plantnav-link" id="above-tab" data-toggle="tab" href="#above" role="tab" aria-controls="above" aria-selected="false">Above range</a>
+          </li>
+          <li class="nav-item plantnav-item">
+            <a class="nav-link plantnav-link" id="within-tab" data-toggle="tab" href="#within" role="tab" aria-controls="within" aria-selected="false">Within range</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane show active" id="below" role="tabpanel" aria-labelledby="below-tab">
+            <!-- Your Care Guide Content Goes Here -->
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center mb-3 p-3" style="color: #b1b2b5;">
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="~/icons/icons8-plant-80.png" alt="Icon" id="Icon" style="margin-left: -55px;" />
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left:10px;">Sun Exposure</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h2 style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 400; font-size: 26px; margin-left:50px;">Ideal</h2>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="fullSunIdealCheck">
+                                    <label class="form-check-label" for="fullSunIdealCheck">Full Sun</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="partialSunIdealCheck">
+                                    <label class="form-check-label" for="partialSunIdealCheck">Partial Sun</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="fullShadeIdealCheck">
+                                    <label class="form-check-label" for="fullShadeIdealCheck">Full Shade</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h2 style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 400; font-size: 26px; margin-left:50px;">Tolerance</h2>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="fullSunToleranceCheck">
+                                    <label class="form-check-label" for="fullSunToleranceCheck">Full Sun</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="partialSunToleranceCheck">
+                                    <label class="form-check-label" for="partialSunToleranceCheck">Partial Sun</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="fullShadeToleranceCheck">
+                                    <label class="form-check-label" for="fullShadeToleranceCheck">Full Shade</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center mb-3 p-3" style="color: #b1b2b5;">
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="~/icons/icons8-biohazard-80.png" alt="Icon" id="Icon" style="margin-left: -55px;" />
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left:10px;">Toxicity</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="toxicToAnimalsCheck">
+                                    <label class="form-check-label" for="toxicToAnimalsCheck">Toxic to animals</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="toxicToHumansCheck">
+                                    <label class="form-check-label" for="toxicToHumansCheck">Toxic to humans</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="nonToxicCheck">
+                                    <label class="form-check-label" for="nonToxicCheck">Non toxic</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center mb-3 p-3" style="color: #b1b2b5;">
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3"> 
+                            <img src="~/icons/season.png" alt="Icon" id="Icon" style="margin-left: -55px;"/>
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left: 10px;">Bloom Time</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="springCheck">
+                                    <label class="form-check-label" for="springCheck">
+                                        Spring
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="summerCheck">
+                                    <label class="form-check-label" for="summerCheck">
+                                        Summer
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="autumnCheck">
+                                    <label class="form-check-label" for="autumnCheck">
+                                        Autumn
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="winterCheck">
+                                    <label class="form-check-label" for="winterCheck">
+                                        Winter
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center mb-3 p-3" style="color: #b1b2b5;">
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="~/icons/planet-earth .png" alt="Icon" id="Icon" style="margin-left: -55px;"/>
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left: 10px;">Native Area</h2>
+                        </div>
+                        <div class="dropdown">
+                            <a class="btn bg-light dropdown-toggle border" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="height: 4opx; width:160px; font-size:16px; font-weight:500;">
+                                Native area
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Europe</a></li>
+                                <li><a class="dropdown-item" href="#">Asia</a></li>
+                                <li><a class="dropdown-item" href="#">South Africa</a></li>
+                                <li><a class="dropdown-item" href="#">South America</a></li>
+                                <li><a class="dropdown-item" href="#">Add new</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center mb-3 p-3" style="color: #b1b2b5;">
+                    
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="~/icons/icons8-sprout-80.png" alt="Icon" id="Icon" style="margin-left: -55px;"/>
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left:10px;">Soil</h2>
+                        </div>
+                        <div class="dropdown">
+                            <a class="btn bg-light dropdown-toggle border" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="height: 4opx; width:160px; font-size:16px; font-weight:500;">
+                                Soil type
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Chalky</a></li>
+                                <li><a class="dropdown-item" href="#">Clay</a></li>
+                                <li><a class="dropdown-item" href="#">Loam</a></li>
+                                <li><a class="dropdown-item" href="#">Moist</a></li>
+                                <li><a class="dropdown-item" href="#">Peat</a></li>
+                                <li><a class="dropdown-item" href="#">Rich</a></li>
+                                <li><a class="dropdown-item" href="#">Sand</a></li>
+                                <li><a class="dropdown-item" href="#">Silt</a></li>
+                                <li><a class="dropdown-item" href="#">Well-drained</a></li>
+                                <li><a class="dropdown-item" href="#">Add new</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center mb-3 p-3" style="color: #b1b2b5;">
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="~/icons/icons8-garden-80.png" alt="Icon" id="Icon" style="margin-left: -55px;"/>
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left:10px;">Water</h2>
+                        </div>
+                        <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="dailyWaterCheck">
+                                    <label class="form-check-label" for="dailyWaterCheck">Daily</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="twiceWeekWaterCheck">
+                                    <label class="form-check-label" for="twiceWeekWaterCheck">Twice a week</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="onceWeekWaterCheck">
+                                    <label class="form-check-label" for="onceWeekWaterCheck">Once a week</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="twiceMonthWaterCheck">
+                                    <label class="form-check-label" for="twiceMonthWaterCheck">Twice a month</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="onceMonthWaterCheck">
+                                    <label class="form-check-label" for="onceMonthWaterCheck">Once a month</label>
+                                </div>
+                                <div class="form-group" style="margin-left:50px;">
+                                    <label for="waterApproachTextarea" style="color: black; font-weight: 500; margin-top:30px; ">Approach</label>
+                                    <textarea class="form-control" id="waterApproachTextarea" rows="3" placeholder="enter approach here"></textarea>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center mb-3 p-3" style="color: #b1b2b5;">
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="~/icons/icons8-fertilizer-80.png" alt="Icon" id="Icon" style="margin-left: -55px;"/>
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left:10px;">Fertilizers</h2>
+                        </div>
+                        <div class="form-group" style="margin-left:50px;">
+                            <textarea class="form-control" id="waterApproachTextarea" rows="3" placeholder="enter your update here"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          </div>
+            <div id="plantContainer" class="container-md">
+                <div id="plantTemplate" class="plant-item d-flex align-items-center mb-3 p-3" style="color: #b1b2b5;">
+                    <div class="flex-grow-1 mb-0">
+                        <div class="d-flex align-items-center mb-3"> 
+                            <img src="~/icons/icons8-info-75.png" alt="Icon" id="Icon" style="width:60px; height:60px; margin-left:-55px;"/>
+                            <h2 id="careTitle" style="color:Black; font-family: 'Sofia Sans', sans-serif; font-weight: 700; font-size: 36px; margin-left: 10px;">Description</h2>
+                        </div>
+                        <div class="form-group" style="margin-left:50px;">
+                            <textarea class="form-control" id="waterApproachTextarea" rows="3" placeholder="enter your update here"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                <button type="button" class="btn" style="background-color: #588470; color:white; font-size:24px; margin-bottom:50px;">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
+</body>
